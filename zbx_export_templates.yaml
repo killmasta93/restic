@@ -1,0 +1,162 @@
+zabbix_export:
+  version: '6.2'
+  date: '2023-04-09T22:15:14Z'
+  template_groups:
+    -
+      uuid: 7df96b18c230490a9a0a9e2307226338
+      name: Templates
+  templates:
+    -
+      uuid: 2b7997ebd8494c41992febfdb105b98b
+      template: 'Restic Backup Custom'
+      name: 'Restic Backup Custom'
+      groups:
+        -
+          name: Templates
+      items:
+        -
+          uuid: 4ea5b0f54d234f47b69033fb05fe7bfa
+          name: 'Restic Backup: Bytes Added'
+          key: restic.backup.added
+          delay: 24h
+          trends: '0'
+          value_type: TEXT
+          tags:
+            -
+              tag: Application
+              value: 'Restic Backup'
+        -
+          uuid: 961dd2f60ad24d428efe801c340706c6
+          name: 'Restic Backup: Processed Bytes'
+          key: restic.backup.processedbytes
+          delay: 24h
+          trends: '0'
+          value_type: TEXT
+          tags:
+            -
+              tag: Application
+              value: 'Restic Backup'
+        -
+          uuid: 50345e68e23749d79fba8b3ce90d4d7a
+          name: 'Restic Backup: Processed Time'
+          key: restic.backup.processedtime
+          delay: 24h
+          trends: '0'
+          value_type: TEXT
+          tags:
+            -
+              tag: Application
+              value: 'Restic Backup'
+        -
+          uuid: 81e0737a79fe4201b1938780b356c761
+          name: 'Restic Backup: Snapshot-ID'
+          key: restic.backup.snapshotid
+          delay: 24h
+          trends: '0'
+          value_type: TEXT
+          tags:
+            -
+              tag: Application
+              value: 'Restic Backup'
+          triggers:
+            -
+              uuid: 86f5117468f24ceb85242ecabf7eba44
+              expression: 'length(last(/Restic Backup Custom/restic.backup.snapshotid,#2))=0'
+              name: 'Restic Backup  is outstanding'
+              priority: HIGH
+              manual_close: 'YES'
+        -
+          uuid: 2a2ad8f0d31e4edeb927e62a173a4284
+          name: 'Restic Backup: Check: Message'
+          key: restic.check.message
+          delay: 24h
+          trends: '0'
+          value_type: TEXT
+          tags:
+            -
+              tag: Application
+              value: 'Restic Backup'
+          triggers:
+            -
+              uuid: 082d36ab2e964d16ad6e1bc4b1ada3d1
+              expression: 'last(/Restic Backup Custom/restic.check.message)="regexp" or last(/Restic Backup Custom/restic.check.message)="failed"'
+              name: 'Restic Check failed'
+              priority: HIGH
+              manual_close: 'YES'
+        -
+          uuid: 84b11624512b4e8c893a580aed04cb6a
+          name: 'Restic Prune: Number of Packs Deleted'
+          key: restic.prune.delpacks
+          delay: 24h
+          trends: '0'
+          value_type: TEXT
+          tags:
+            -
+              tag: Application
+              value: 'Restic Backup'
+        -
+          uuid: 9f9ac6ed60214aa886c13e584d89d8c8
+          name: 'Restic Prune: Freed Space'
+          key: restic.prune.freedspace
+          delay: 24h
+          trends: '0'
+          value_type: TEXT
+          tags:
+            -
+              tag: Application
+              value: 'Restic Backup'
+        -
+          uuid: fe474626f17b4b24bc54cc68ba5cddfc
+          name: 'Restic Prune: Number of Packs'
+          key: restic.prune.packs
+          delay: 24h
+          trends: '0'
+          value_type: TEXT
+          tags:
+            -
+              tag: Application
+              value: 'Restic Backup'
+        -
+          uuid: 81e63d2f24e1494c826839b439fcaefc
+          name: 'Restic Prune: Policy Space'
+          key: restic.prune.policy
+          delay: 24h
+          trends: '0'
+          value_type: TEXT
+          tags:
+            -
+              tag: Application
+              value: 'Restic Backup'
+        -
+          uuid: af8237f6d8a0419dacc7dabc55dfb119
+          name: 'Restic Prune: Invalid Files Removed'
+          key: restic.prune.remfiles
+          delay: 24h
+          trends: '0'
+          value_type: TEXT
+          tags:
+            -
+              tag: Application
+              value: 'Restic Backup'
+        -
+          uuid: dd683901be7c4d7c92360a6f2f94b54f
+          name: 'Restic Prune: Number of Packs Rewritten'
+          key: restic.prune.rewpacks
+          delay: 24h
+          trends: '0'
+          value_type: TEXT
+          tags:
+            -
+              tag: Application
+              value: 'Restic Backup'
+        -
+          uuid: f5da09bc5ba846ce94ffe22618492816
+          name: 'Restic Prune: Total Size'
+          key: restic.prune.size
+          delay: 24h
+          trends: '0'
+          value_type: TEXT
+          tags:
+            -
+              tag: Application
+              value: 'Restic Backup'
